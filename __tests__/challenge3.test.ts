@@ -9,8 +9,12 @@ describe("Sum Testing", () => {
     afterAll(async () => {
         await widget.driver.quit();
     })
-    test("Adds two positive numbers correctly", async () => {
+    test("Sum of two positive numbers", async () => {
         let sum = await widget.getSumResult("1", "2");
         expect(sum).toBe("Sum: 3");
     });
+    test("Sum of two negative numbers", async () => {
+        let sum = await widget.getSumResult("-3", "-4");
+        expect(sum).toBe("Sum: -7");
+    })
 })
