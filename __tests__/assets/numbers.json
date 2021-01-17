@@ -1,0 +1,57 @@
+[
+    {
+        "first": "3",
+        "second": "4",
+        "sum": "Sum: 7"
+
+    },
+    {
+        "first": "-3",
+        "second": "4",
+        "sum": "Sum: 1"
+
+    },
+    {
+        "first": "3",
+        "second": "-4",
+        "sum": "Sum: -1"
+
+    },
+    {
+        "first": "-3",
+        "second": "-4",
+        "sum": "Sum: -7"
+
+    },
+    {
+        "first": "0",
+        "second": "0",
+        "sum": "Sum: 0"
+
+    },
+    {
+        "first": "0",
+        "second": "1",
+        "sum": "Sum: 1"
+
+    },
+    {
+        "first": "1",
+        "second": "0",
+        "sum": "Sum: 1"
+
+    },
+    {
+        "first": "0",
+        "second": "-1",
+        "sum": "Sum: -1"
+
+    },
+    {
+        "first": "-1",
+        "second": "0",
+        "sum": "Sum: -1"
+
+    },
+]
+
