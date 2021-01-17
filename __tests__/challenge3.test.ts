@@ -1,5 +1,6 @@
 import { Driver } from "selenium-webdriver/chrome";
 import { Widgets}  from "./pages/Widgets"
+import * as numbers from "./assets/numbers.json"
 
 describe("Sum Testing", () => {
     let widget = new Widgets
@@ -8,17 +9,12 @@ describe("Sum Testing", () => {
     });
     afterAll(async () => {
         await widget.driver.quit();
-    })
-    test("Sum of two positive numbers", async () => {
-        let sum = await widget.getSumResult("1", "2");
-        expect(sum).toBe("Sum: 3");
     });
-    test("Sum of two negative numbers", async () => {
-        let sum = await widget.getSumResult("-3", "-4");
-        expect(sum).toBe("Sum: -7");
-    })
-    test("Sum of mixed numbers: first positive second negative", async () => {
-        let sum = await widget.getSumResult("4", "-5");
-        expect(sum).toBe("Sum: -1");
+    numbers.forEach((equation) => {
+        test(`"Case: ${equation.case}`, async () => {
+            let result = await widget.getSumResult(equation.first, equation.second);
+            expect(result).toBe(equation.sum);
+        });
     });
-})
+});
+
