@@ -48,10 +48,10 @@ export class Widgets extends BasePage {
    */
   async getSumResult(firstNum: string, secondNum: string) {
     // Enter firstNum into the first input field.
-    await this.setInput(By.name("someInput1"), firstNum);
+    await this.setInput(By.name("sumInput1"), firstNum);
     await this.click(By.name("sumInput1"));
     // Enter secondNum into the second input field.
-    await this.setInput(By.name("someInput2"), secondNum);
+    await this.setInput(By.name("sumInput2"), secondNum);
     await this.click(By.name("sumInput2"));
     // Click "Add"
     await this.click(By.name("sumButton"));
