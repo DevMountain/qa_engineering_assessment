@@ -1,5 +1,6 @@
 import { Widgets } from "./pages/Widgets";
 import * as palindromes from "./assets/palindromes.json";
+import * as nonPalindromes from "./assets/notPalindromes.json"
 
 describe("palindrome testing", () => {
   let widget = new Widgets();
@@ -14,5 +15,7 @@ describe("palindrome testing", () => {
       let results = await widget.checkPalindrome(palindrome);
       expect(results).toContain("true");
     });
+
+
   });
 });
