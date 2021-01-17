@@ -15,7 +15,7 @@ describe("widget filter tests", () => {
     expect(results.evens).toContain("0,2,4,6,8,10"); 
   });
   test("The objects can be filtered", async () => {
-    await widget.setObjectFilter("haircolor");
+    await widget.setObjectFilter("hairColor");
     let results = await widget.getFilteredObjects();
     expect(results).toContain("Jeremy");
     expect(results).not.toContain("Jimmy");
