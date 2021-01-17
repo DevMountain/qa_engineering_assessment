@@ -27,8 +27,8 @@ export class Widgets extends BasePage {
     return this.getText(By.name("objectFilterResults"));
   }
   async setNameFilter(filter: string) {
-    await this.setInput(By.name("nameFilterInput"), filter);
-    return this.click(By.name("nameFilterButton"));
+    await this.setInput(By.id("nameFilterInput"), filter);
+    return this.click(By.id("nameFilterButton"));
   }
   async getFilteredNames() {
     return this.getText(By.name("nameFilterResults"));
@@ -39,5 +39,23 @@ export class Widgets extends BasePage {
     return this.getText(By.name("palindromeResults")).then(
       (text) => text.split(" ")[1]
     );
+  }
+  /**
+   * Enters two numbers into the sum widget and returns the widget's output.
+   * 
+   * @param firstNum - number to be entered into the first input line
+   * @param secondNum - number to be entered into the second input line
+   */
+  async getSumResult(firstNum: string, secondNum: string) {
+    // Enter firstNum into the first input field.
+    await this.setInput(By.name("sumInput1"), firstNum);
+    await this.click(By.name("sumInput1"));
+    // Enter secondNum into the second input field.
+    await this.setInput(By.name("sumInput2"), secondNum);
+    await this.click(By.name("sumInput2"));
+    // Click "Add"
+    await this.click(By.name("sumButton"));
+    // Return widget's calculated sum
+    return this.getText(By.name("sumResults"));      
   }
 }
