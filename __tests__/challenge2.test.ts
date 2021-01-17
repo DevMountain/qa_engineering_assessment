@@ -1,6 +1,6 @@
 import { Widgets } from "./pages/Widgets";
 import * as palindromes from "./assets/palindromes.json";
-import * as notPalindromes from "./assets/notPalindromes.json"
+import * as nonPalindromes from "./assets/notPalindromes.json"
 
 describe("palindrome testing", () => {
   let widget = new Widgets();
@@ -16,7 +16,7 @@ describe("palindrome testing", () => {
       expect(results).toContain("true");
     });
   });
-  notPalindromes.forEach((nonPalindrome) => {
+  nonPalindromes.forEach((nonPalindrome) => {
       test(`"${nonPalindrome} should not be a palindrome`, async () => {
         let results = await widget.checkPalindrome(nonPalindrome);
         expect(results).toContain("false");
