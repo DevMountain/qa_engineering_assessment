@@ -17,4 +17,8 @@ describe("Sum Testing", () => {
         let sum = await widget.getSumResult("-3", "-4");
         expect(sum).toBe("Sum: -7");
     })
+    test("Sum of mixed numbers: first positive second negative", async () => {
+        let sum = await widget.getSumResult("4", "-5");
+        expect(sum).toBe("Sum: -1");
+    });
 })
