@@ -40,4 +40,22 @@ export class Widgets extends BasePage {
       (text) => text.split(" ")[1]
     );
   }
+  /**
+   * Enters two numbers into the sum widget and returns the widget's output.
+   * 
+   * @param firstNum - number to be entered into the first input line
+   * @param secondNum - number to be entered into the second input line
+   */
+  async getSumResult(firstNum: string, secondNum: string) {
+    // Enter firstNum into the first input field.
+    await this.setInput(By.name("someInput1"), firstNum);
+    await this.click(By.name("sumInput1"));
+    // Enter secondNum into the second input field.
+    await this.setInput(By.name("someInput2"), secondNum);
+    await this.click(By.name("sumInput2"));
+    // Click "Add"
+    await this.click(By.name("sumButton"));
+    // Return widget's calculated sum
+    return this.getText(By.name("sumResults"));      
+  }
 }
