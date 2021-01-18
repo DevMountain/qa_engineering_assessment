@@ -1,4 +1,4 @@
-import { By } from "selenium-webdriver";
+import { By, until } from "selenium-webdriver";
 import { BasePage, Options } from "./BasePage";
 
 export class Widgets extends BasePage {
@@ -27,11 +27,18 @@ export class Widgets extends BasePage {
     return this.getText(By.name("objectFilterResults"));
   }
   async setNameFilter(filter: string) {
-    await this.setInput(By.name("nameFilterInput"), filter);
-    return this.click(By.name("nameFilterButton"));
+    await this.setInput(By.id("nameFilterInput"), filter);
+    return this.click(By.id("nameFilterButton"));
   }
   async getFilteredNames() {
-    return this.getText(By.name("nameFilterResults"));
+    return (await this.getText(By.name("nameFilterResults")));
+    // const names: Array<string> = [];
+    //     await this.driver.wait(until.elementsLocated(By.name("nameFilterResults")));
+    //     let list = await this.driver.findElements(By.name("nameFilterResults"));
+    //     for (let i = 0; i < list.length; i++) {
+    //         await names.push(await list[i].getText());
+    // }
+    // return names;
   }
   async checkPalindrome(maybePalindrome: string) {
     await this.setInput(By.name("palindromeInput"), maybePalindrome);
@@ -39,5 +46,21 @@ export class Widgets extends BasePage {
     return this.getText(By.name("palindromeResults")).then(
       (text) => text.split(" ")[1]
     );
+  }
+
+  async setSumInputOne(input: number){
+    return this.setInput(By.name("sumInput1"), input);
+    
+  }
+  async setSumInputTwo(input: number){
+    return this.setInput(By.name("sumInput2"), input);
+  }
+
+  async addButton(){
+    return this.click(By.name("sumButton"));
+  }
+  async getSumResult(){
+    return (await this.getText(By.name("sumResults"))).toString();
+    
   }
 }
