@@ -40,4 +40,10 @@ export class Widgets extends BasePage {
       (text) => text.split(" ")[1]
     );
   }
+  async getSumValues(a: number, b: number) {
+    await this.setInput(By.name("sumInput1"), a);
+    await this.setInput(By.name("sumInput2"), b);
+    await this.click(By.name("sumButton"));
+    return this.getText(By.name("sumResults"));
+  }
 }
