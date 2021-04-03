@@ -1,5 +1,8 @@
-import { By } from "selenium-webdriver";
+import { By, Actions, WebDriver } from "selenium-webdriver";
+import { Executor } from "selenium-webdriver/http";
 import { BasePage, Options } from "./BasePage";
+
+
 
 export class Widgets extends BasePage {
   constructor(options?: Options) {
@@ -19,6 +22,15 @@ export class Widgets extends BasePage {
     results.odds = await this.getText(By.name("oddResults"));
     return results;
   }
+  async singleEvensOdds(even: any, odd: any) {
+    let results = {
+      even: even,
+      odd: odd
+    };
+    results.even = await this.getText(By.name("evenResults"));
+    results.odd = await this.getText(By.name("oddResults"));
+    return results;  
+  }
   async setObjectFilter(filter: string) {
     await this.setInput(By.name("objectFilterInput"), filter);
     return this.click(By.name("objectFilterButton"));
@@ -27,11 +39,12 @@ export class Widgets extends BasePage {
     return this.getText(By.name("objectFilterResults"));
   }
   async setNameFilter(filter: string) {
-    await this.setInput(By.name("nameFilterInput"), filter);
-    return this.click(By.name("nameFilterButton"));
+    await this.setInput(By.xpath(`//input[@id="nameFilterInput"]`), filter);
+    return this.click(By.xpath(`//button[@id="nameFilterButton"]`));
   }
-  async getFilteredNames() {
-    return this.getText(By.name("nameFilterResults"));
+    async getFilteredNames() {
+        let element = await this.getElement(By.xpath(`//span[@name="nameFilterResults"]`))
+        return await element.getText();
   }
   async checkPalindrome(maybePalindrome: string) {
     await this.setInput(By.name("palindromeInput"), maybePalindrome);
@@ -39,5 +52,22 @@ export class Widgets extends BasePage {
     return this.getText(By.name("palindromeResults")).then(
       (text) => text.split(" ")[1]
     );
+  }
+  async inputAddValues(topNum: any, botNum: number) {
+    await this.setInput(By.xpath(`//input[@type="number"]`)[0], topNum);
+    await this.setInput(By.xpath(`//input[@type="number"]`)[1], botNum);
+      return this.click(By.xpath(`//button[@class="confirmationButton"]`));
+
+  }
+  async getAddValue() {
+    let element = await this.getElement(By.xpath(`//span[@name="sumResults"]`))
+    return await element.getText();
+  }
+  async getAddInput() {
+    let element = await this.getElement(By.xpath(`//span[@name="sumResults"]`))
+    return await element.getText();
+  }
+  async checkSumType() {
+    this.getAddValue()
   }
 }
