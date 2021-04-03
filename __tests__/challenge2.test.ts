@@ -1,5 +1,6 @@
 import { Widgets } from "./pages/Widgets";
 import * as palindromes from "./assets/palindromes.json";
+import * as notPalindromes from "./assets/notPalindromes.json";
 
 describe("palindrome testing", () => {
   let widget = new Widgets();
