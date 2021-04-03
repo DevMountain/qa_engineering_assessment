@@ -1,5 +1,6 @@
 import { Widgets } from "./pages/Widgets";
 import * as palindromes from "./assets/palindromes.json";
+import * as nonPalidroms from "./assets/non-palindromes.json";
 
 describe("palindrome testing", () => {
   let widget = new Widgets();
@@ -13,6 +14,13 @@ describe("palindrome testing", () => {
     test(`"${palindrome}" should be a palindrome`, async () => {
       let results = await widget.checkPalindrome(palindrome);
       expect(results).toContain("true");
+    });
+  });
+
+  nonPalidroms.forEach((nonPalindrome) => {
+    test(`"${nonPalindrome}" should be a non palindrome`, async () => {
+      let results = await widget.checkPalindrome(nonPalindrome);
+      expect(results).toContain("false");
     });
   });
 });
