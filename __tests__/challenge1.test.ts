@@ -30,6 +30,7 @@ describe("widget filter tests", () => {
     expect(results).toContain("Jessica");
     expect(results).not.toContain("Jennifer");
     await widget.driver.sleep(3000)
+    
   });
 
  
