@@ -17,7 +17,7 @@ export interface Options {
   /** if no driver is supplied, will check for preferred browser (default chrome) */
   browser?: "chrome" | "firefox";
   /** some pages may have a base url */
-  url?: string;
+  url: 'https://devmountain-qa.github.io/Automation-Basics/build/'; //Challenge1-Added url
 }
 
 export class BasePage {
