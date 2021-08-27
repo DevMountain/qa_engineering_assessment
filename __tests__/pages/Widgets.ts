@@ -2,6 +2,9 @@ import { By } from "selenium-webdriver";
 import { BasePage, Options } from "./BasePage";
 
 export class Widgets extends BasePage {
+  sleep(arg0: number) {
+    throw new Error("Method not implemented.");
+  }
   constructor(options?: Options) {
     super(options);
     this.url = "https://devmountain-qa.github.io/Automation-Basics/build/";
@@ -23,12 +26,30 @@ export class Widgets extends BasePage {
     await this.setInput(By.name("objectFilterInput"), filter);
     return this.click(By.name("objectFilterButton"));
   }
+
+
+  async setNumber1(numbers: Array<number>) {
+    await this.setInput(By.name("sumInput1"), numbers.join(","));
+  
+  }
+
+
+  async setNumber2(numbers: Array<number>) {
+    await this.setInput(By.name("sumInput2"), numbers.join(","));
+    return this.click(By.name("sumButton"));
+  }
+
+  async getSum() {
+    return this.getText(By.name("sumResults"));
+  }
+ 
+
   async getFilteredObjects() {
     return this.getText(By.name("objectFilterResults"));
   }
   async setNameFilter(filter: string) {
-    await this.setInput(By.name("nameFilterInput"), filter);
-    return this.click(By.name("nameFilterButton"));
+    await this.setInput(By.id("nameFilterInput"), filter);
+    return this.click(By.id("nameFilterButton"));
   }
   async getFilteredNames() {
     return this.getText(By.name("nameFilterResults"));
