@@ -1,4 +1,5 @@
-[
-    "racecar",
-    "tacocat"
-]
+{
+    "palindrome": ["racecar", "tacocat"],
+    "non-palindrome": ["cake", "run"]
+  }
+  

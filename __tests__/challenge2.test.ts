@@ -9,10 +9,16 @@ describe("palindrome testing", () => {
   afterAll(async () => {
     await widget.driver.quit();
   });
-  palindromes.forEach((palindrome) => {
+  palindromes.palindrome.forEach((palindrome) => {
     test(`"${palindrome}" should be a palindrome`, async () => {
       let results = await widget.checkPalindrome(palindrome);
       expect(results).toContain("true");
+    });
+  });
+  palindromes["non-palindrome"].forEach((nonpalindrome) => {
+    test(`"${nonpalindrome}" should not be a palindrome`, async () => {
+      let results = await widget.checkPalindrome(nonpalindrome);
+      expect(results).toContain("false");
     });
   });
 });

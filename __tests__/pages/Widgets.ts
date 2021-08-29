@@ -27,8 +27,8 @@ export class Widgets extends BasePage {
     return this.getText(By.name("objectFilterResults"));
   }
   async setNameFilter(filter: string) {
-    await this.setInput(By.name("nameFilterInput"), filter);
-    return this.click(By.name("nameFilterButton"));
+    await this.setInput(By.id("nameFilterInput"), filter);
+    return this.click(By.id("nameFilterButton"));
   }
   async getFilteredNames() {
     return this.getText(By.name("nameFilterResults"));
@@ -39,5 +39,14 @@ export class Widgets extends BasePage {
     return this.getText(By.name("palindromeResults")).then(
       (text) => text.split(" ")[1]
     );
+  }
+  async add(sum1: number, sum2: number){
+    let firstValue = await this.setInput(By.name("sumInput1"), sum1);
+    let secondValue = await this.setInput(By.name("sumInput2"), sum2);
+    await this.click(By.name("sumButton"))
+  }
+
+  async getSum(){
+   return this.getText(By.name("sumResults"));
   }
 }
