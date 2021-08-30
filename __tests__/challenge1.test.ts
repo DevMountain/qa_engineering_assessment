@@ -11,17 +11,21 @@ describe("widget filter tests", () => {
   test("Evens and odds can be split", async () => {
     await widget.splitEvensAndOdds([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     let results = await widget.getEvensAndOdds();
-    expect(results.odds).toContain("0,2,4,6,8,10");
-    expect(results.evens).toContain("1,3,5,7,9");
+    // Make sure your expected results are accurate! Evens should be even and
+    // odds should be odd.
+    expect(results.evens).toContain("0,2,4,6,8,10");
+    expect(results.odds).toContain("1,3,5,7,9");
   });
   test("The objects can be filtered", async () => {
-    await widget.setObjectFilter("haircolor");
+    // The filter is case sensitive.
+    await widget.setObjectFilter("hairColor");
     let results = await widget.getFilteredObjects();
     expect(results).toContain("Jeremy");
     expect(results).not.toContain("Jimmy");
     expect(results).not.toContain("Carly");
   });
   test("The names can be filtered", async () => {
+    // The bug for this test is actually in the Widgets page object.
     await widget.setNameFilter("a");
     let results = await widget.getFilteredNames();
     expect(results).toContain("Jessica");

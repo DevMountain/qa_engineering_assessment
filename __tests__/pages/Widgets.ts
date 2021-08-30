@@ -27,8 +27,10 @@ export class Widgets extends BasePage {
     return this.getText(By.name("objectFilterResults"));
   }
   async setNameFilter(filter: string) {
-    await this.setInput(By.name("nameFilterInput"), filter);
-    return this.click(By.name("nameFilterButton"));
+    // both of these elements have unique IDs, where the other similar elements
+    // have unique names
+    await this.setInput(By.id("nameFilterInput"), filter);
+    return this.click(By.id("nameFilterButton"));
   }
   async getFilteredNames() {
     return this.getText(By.name("nameFilterResults"));
@@ -38,6 +40,17 @@ export class Widgets extends BasePage {
     await this.click(By.name("palindromeButton"));
     return this.getText(By.name("palindromeResults")).then(
       (text) => text.split(" ")[1]
+    );
+  }
+  async addNumbers(a: number, b: number) {
+    await this.setInput(By.name("sumInput1"), a);
+    await this.setInput(By.name("sumInput2"), b);
+    return this.click(By.name("sumButton"));
+  }
+  async getSum() {
+    // you don't HAVE to format the sum this way, but I like getting the number
+    return this.getText(By.name("sumResults")).then((text) =>
+      parseFloat(text.split(" ")[1])
     );
   }
 }
