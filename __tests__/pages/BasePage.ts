@@ -126,4 +126,19 @@ export class BasePage {
       }
     );
   }
+
+  /**
+   * Clicks the up and down arrows on an input field that is of type "number"
+   * @param elementBy {By} - the input field that is of type "number"
+   * @param direction {any} - the direction to click, this should be Key.ARROW_UP or Key.ARROW_DOWN
+   * @param numTimesToClick - the number of times to click the arrow
+   */
+  async clickSpinner(elementBy: By, direction: any, numTimesToClick: number){
+    let element = await this.getElement(elementBy);
+    await this.driver.wait(until.elementIsEnabled(element));
+
+    for(let i=0; i<numTimesToClick; i++){
+      await element.sendKeys(direction);
+    }
+  }
 }
