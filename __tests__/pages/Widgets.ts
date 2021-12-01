@@ -26,12 +26,34 @@ export class Widgets extends BasePage {
   async getFilteredObjects() {
     return this.getText(By.name("objectFilterResults"));
   }
+  //the name filter input and name filter button locators were incorrectly
+  //labelled By.name when in fact the values labelled name on this page
+  //were tied to the id of these objects. Changes have been made to reflect this.
   async setNameFilter(filter: string) {
-    await this.setInput(By.name("nameFilterInput"), filter);
-    return this.click(By.name("nameFilterButton"));
+    await this.setInput(By.id("nameFilterInput"), filter);
+    return this.click(By.id("nameFilterButton"));
   }
   async getFilteredNames() {
     return this.getText(By.name("nameFilterResults"));
+  }
+  /**
+   * This method was created to test the sum functionality.
+   * @param input1 is the first numerical value of the equation
+   * @param input2 is the second numerical value of the equation
+   * @returns the sumButton is clicked to calculate the equation.
+   */
+  async calculateSum(input1: number, input2: number){
+    await this.setInput(By.name("sumInput1"), input1);
+    await this.setInput(By.name("sumInput2"), input2);
+    return this.click(By.name("sumButton"));
+  }
+  /**
+   * This method
+   * @returns the result of the equation
+   * and allows us to check the result for accuracy
+   */
+  async getSumResult() {
+    return this.getText(By.name("sumResults"));
   }
   async checkPalindrome(maybePalindrome: string) {
     await this.setInput(By.name("palindromeInput"), maybePalindrome);
